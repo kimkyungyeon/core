@@ -12,8 +12,8 @@ import springmvc.core.member.MemoryMemberRepository;
 @Component
 public class OrderServiceImpl implements OrderService{
 
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); OCP, DIP 위반
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy()
 
@@ -22,13 +22,6 @@ public class OrderServiceImpl implements OrderService{
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
-
-    @Autowired
-    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
-
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
