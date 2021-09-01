@@ -1,7 +1,10 @@
 package springmvc.core.order;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import springmvc.core.annotation.MainDiscountPolicy;
 import springmvc.core.discount.DiscountPolicy;
 import springmvc.core.discount.FixDiscountPolicy;
 import springmvc.core.discount.RateDiscountPolicy;
@@ -10,6 +13,7 @@ import springmvc.core.member.MemberRepository;
 import springmvc.core.member.MemoryMemberRepository;
 
 @Component
+//@RequiredArgsConstructor //final 이 붙은 필드를 포함한 생성자
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
@@ -18,7 +22,7 @@ public class OrderServiceImpl implements OrderService{
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy()
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }

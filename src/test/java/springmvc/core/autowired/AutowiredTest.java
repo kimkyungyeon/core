@@ -19,10 +19,9 @@ public class AutowiredTest {
 
     }
 
-    @Configuration
     static class TestBean {
 
-        @Autowired(required = true)
+        @Autowired(required = false)
         public void setNoBean1(Member noBean1) {
             System.out.println("noBean1 = " + noBean1);
         }
